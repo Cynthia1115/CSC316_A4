@@ -2,6 +2,7 @@
 This is for the CSC316 A4 Interactive Visualization
 
 🌍The Warming Curve: How Earth’s Temperature Has Changed Since 1880
+
 Project Overview
     This interactive visualization explores how the Earth’s global average temperature has changed over the past century and a half. Using NASA’s Global Temperature Anomaly dataset, it reveals how the planet has shifted from cooler (blue) to hotter (red) years, emphasizing the accelerating rate of global warming since the mid-20th century.
 

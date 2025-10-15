@@ -1,10 +1,11 @@
 # CSC316_A4
 This is for the CSC316 A4 Interactive Visualization
+
 🌍The Warming Curve: How Earth’s Temperature Has Changed Since 1880
-Project Overview
+    Project Overview
 This interactive visualization explores how the Earth’s global average temperature has changed over the past century and a half. Using NASA’s Global Temperature Anomaly dataset, it reveals how the planet has shifted from cooler (blue) to hotter (red) years, emphasizing the accelerating rate of global warming since the mid-20th century.
 
-Dataset Description
+    Dataset Description
 Dataset Source: Global Temperature Time Series (DataHub / NASA GISTEMP)
 Data Fields:
 Column	Description
@@ -13,7 +14,7 @@ Year	Year of observation (1880 – 2024)
 Mean	Global mean surface temperature anomaly in °C, relative to the 1951–1980 baseline
 Summary: Each record represents the annual deviation of the global average temperature from a long-term reference period. Positive values indicate warmer-than-average years, while negative values indicate cooler-than-average years. This dataset is widely used in climate research to illustrate long-term global warming trends.
 
-Visualization Description
+    Visualization Description
 Main View — Global Temperature Line Chart
 * X-axis: Year (1880 – 2024)
 * Y-axis: Mean temperature anomaly (°C)

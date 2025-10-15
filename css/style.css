@@ -1,0 +1,124 @@
+/* ============================
+   GLOBAL WARMING D3 STYLESHEET
+   ============================ */
+
+/* Base page style */
+body {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 24px;
+    color: #111827;
+}
+
+h1 {
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Chart area */
+#chart, #chart-area svg {
+    display: block;
+    width: 100%;
+    height: 500px;
+}
+
+/* ========== Axes ========== */
+.axis path, .axis line, .domain {
+    fill: none;
+    stroke: #888;
+    shape-rendering: crispEdges;
+}
+.axis text {
+    font-size: 11px;
+    fill: #333;
+}
+.axis-label {
+    fill: #666;
+    font-size: 12px;
+    text-anchor: middle;
+}
+
+/* ========== Bars ========== */
+.bar {
+    fill: #3C948B;
+}
+.bar:hover {
+    fill: #327972;
+}
+
+/* ========== Dots & Lines ========== */
+.dot {
+    stroke: #fff;
+    stroke-width: 1;
+    opacity: 0.85;
+    transition: opacity 0.15s ease-in-out, r 0.15s ease-in-out;
+}
+.dot {
+    stroke: #fff;
+    stroke-width: 1;
+    opacity: 0.85;
+    transition: opacity .15s ease-in-out, transform .15s ease-in-out;
+    transform-box: fill-box;      /* ensure transform uses the circle’s box */
+    transform-origin: center;
+}
+
+.dot:hover {
+    opacity: 1;
+    transform: scale(1.3);        /* visually enlarges the dot */
+}
+
+.line {
+    fill: none;
+    stroke-width: 2.5px;
+}
+.line.TempAnomaly {
+    stroke: #ef4444;
+}
+.line.CO2ppm {
+    stroke: #0ea5e9;
+}
+
+/* ========== Area (optional) ========== */
+.area {
+    opacity: 0.6;
+    fill: #d1e3f9;
+    clip-path: url(#clip);
+}
+.area:hover {
+    opacity: 0.8;
+}
+
+/* ========== Tooltip ========== */
+#tooltip {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 6px 8px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+    font-size: 13px;
+    pointer-events: none;
+}
+#tooltip.hidden {
+    display: none;
+}
+
+/* ========== Brush/Zoom ========== */
+.brush .selection {
+    fill: #2563eb;
+    fill-opacity: 0.15;
+    stroke: #2563eb;
+    shape-rendering: crispEdges;
+}
+
+/* ========== Legend ========== */
+.legend {
+    font-size: 12px;
+    fill: #555;
+}
+.legend rect {
+    stroke: #ccc;
+    fill: none;
+}

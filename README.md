@@ -1,53 +1,44 @@
 # CSC316_A4
 This is for the CSC316 A4 Interactive Visualization
 
-🌍The Warming Curve: How Earth’s Temperature Has Changed Since 1880
+🌍 Visualization Overview
+Title: Global Warming Over Time — Temperature and CO₂ Concentration
+This interactive D3.js line chart visualizes the relationship between global mean temperature anomalies (°C) and atmospheric CO₂ concentration (ppm) across years. It allows users to dynamically switch metrics and apply smoothing to observe long-term climate trends.
 
-Project Overview
-    This interactive visualization explores how the Earth’s global average temperature has changed over the past century and a half. Using NASA’s Global Temperature Anomaly dataset, it reveals how the planet has shifted from cooler (blue) to hotter (red) years, emphasizing the accelerating rate of global warming since the mid-20th century.
+🧩 Structure and Interaction
+1. Data
+The dataset (annual.csv) contains three main columns:
+Year	TempAnomaly (°C)	CO2ppm
+1880	-0.12	290.3
+1900	-0.08	296.1
+...	...	...
+2024	1.12	419.7
+These values can be replaced with real-world NASA GISTEMP and Mauna Loa data later.
 
-Dataset Description
-Dataset Source: Global Temperature Time Series (DataHub / NASA GISTEMP)
-Data Fields:
-Column	Description
-Source	Dataset identifier (e.g. “GCAG”, “GISTEMP”)
-Year	Year of observation (1880 – 2024)
-Mean	Global mean surface temperature anomaly in °C, relative to the 1951–1980 baseline
-    Summary: Each record represents the annual deviation of the global average temperature from a long-term reference period. Positive values indicate warmer-than-average years, while negative values indicate cooler-than-average years. This dataset is widely used in climate research to illustrate long-term global warming trends.
+2. Interface
+* Dropdown Menu: Lets users choose between:
+    * “Temperature Anomaly (°C)”
+    * “CO₂ Concentration (ppm)”
+* Smoothing Slider: Applies a moving average to reveal long-term climate patterns.
+* Tooltips: Show precise year, temperature anomaly, and CO₂ values when hovering.
+* Legend and Labels: Clarify which metric is active and what the line color represents.
 
-Visualization Description
-    Main View — Global Temperature Line Chart
-    * X-axis: Year (1880 – 2024)
-    * Y-axis: Mean temperature anomaly (°C)
-    * Encoding: A continuous color gradient from blue → red represents cooler to warmer years.
-    * Animation: The line gradually draws across time, simulating the unfolding story of global warming.
-    * Tooltip: Hovering over a point displays the exact year and temperature anomaly value.
-    * Slider & Play Controls: Users can manually scrub through time or press “Play” to animate the timeline.
+3. Interactivity Features
+* Hover over any data point to view detailed numerical information.
+* Transition Effects: Smooth animations for switching metrics and updating line shape.
+* Responsive Layout: Scales for different screen widths.
+* Smoothing Control: Adjustable window size applies the movingAvg() helper to reduce yearly variability.
 
-Secondary View — Global Heat Stripes
-* A compact bar-stripe timeline shows each year’s color-coded anomaly.
-* Hovering on a stripe highlights the corresponding position on the main chart.
-Annotations & Highlights
-Key historical milestones are marked to contextualize the data:
-* 1945: Post-WWII industrial expansion.
-* 1980: Sharp rise in CO₂ concentrations.
-* 2016: Record global heat linked to El Niño event.
-
-Insight & Narrative Goals
-This visualization aims to:
-1. Reveal the long-term warming trend — show how the global temperature anomaly has shifted from ≈ −0.2 °C to +1.2 °C since 1880.
-2. Highlight the rate of acceleration — emphasize the steep incline after 1950 and particularly since 1990.
-3. Engage users interactively — allow them to explore the data chronologically or jump to specific historical points.
-4. Contextualize the science — connect visual data patterns with real-world events (industrialization, environmental policy, climate milestones).
-5. Encourage reflection — convey that global warming is not a distant projection but a measurable, accelerating phenomenon already visible in the record.
-
-Technical Notes
-* Built with: D3.js v7
-* Hosting: GitHub Pages
-* Interactivity: Play/pause controls, tooltip hover, time scrubber slider, coordinated dual-view highlighting
-* Responsive: Works across desktop and tablet browsers
-
-Acknowledgments
-* Data from the NASA Goddard Institute for Space Studies (GISTEMP).
-* Visualization inspired by Ed Hawkins’ “Climate Stripes” concept.
-* Developed for the CSC316: Data Visualization course at the University of Toronto.
+📈 Visual Encoding
+Feature	Encoding
+X-axis	Year (time scale)
+Y-axis	Metric value (temperature °C or CO₂ ppm)
+Color	Distinguishes metrics: red for temperature, blue for CO₂
+Tooltip	Shows formatted values with contextual units
+Line shape	Smoothed trend line emphasizes climate progression
+🔍 Insights and Interpretation
+1. Strong Upward Trend: Both temperature and CO₂ concentration rise sharply after the 1950s. This reflects the acceleration of industrial activity and fossil fuel emissions.
+2. Early Flat Period: Between 1880–1940, temperature anomalies fluctuate slightly, showing local variation before the modern warming era.
+3. Post-1970 Correlation: The relationship between CO₂ and temperature becomes nearly linear — each ppm increase in CO₂ roughly coincides with a proportional temperature rise.
+4. Acceleration in Recent Decades: Smoothing highlights the steepest incline from 2000–2020, showing how the planet is warming faster than ever recorded.
+5. Impact Insight: The chart visually supports climate science consensus: anthropogenic CO₂ drives global warming through a greenhouse effect mechanism.

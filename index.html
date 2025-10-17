@@ -11,17 +11,25 @@
 <header class="page-header">
     <h1>Global Warming — Interactive Trends</h1>
     <div class="controls">
-        <label for="metric">Metric:</label>
-        <select id="metric">
-            <option value="TempAnomaly">Temperature Anomaly (°C)</option>
-            <option value="CO2ppm">CO₂ (ppm)</option>
-        </select>
-        <label for="smoother" class="ml">Smoothing:</label>
+        <label for="smoother">Smoothing:</label>
         <select id="smoother">
             <option value="0">Off</option>
             <option value="3">3-year</option>
             <option value="5">5-year</option>
         </select>
+
+        <label class="ml">Year Range:</label>
+        <div class="ml" id="year-range-container">
+            <input type="range" id="yearStart" min="0" max="100" value="0" step="1">
+            <input type="range" id="yearEnd" min="0" max="100" value="100" step="1">
+            <span id="yearRangeLabel" style="margin-left:10px;"></span>
+        </div>
+
+        <div class="ml">
+            <button id="show-temp">Temperature Only</button>
+            <button id="show-co2">CO₂ Only</button>
+            <button id="show-both">Both</button>
+        </div>
     </div>
 </header>
 
@@ -31,7 +39,7 @@
 </main>
 
 <!-- Load helpers first, then main -->
-<script src="js/helperfunctions.js"></script>
+<script src="js/chart.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

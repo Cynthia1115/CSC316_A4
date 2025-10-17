@@ -3,8 +3,8 @@ class Chart {
         this.parentElement = parentElement;
         this.data = data;
         this.fullData = data;
-        this.currentMetricMode = "both"; // show both by default
-        this.smoothing = 0; // 0 = off
+        this.currentMetricMode = "both";
+        this.smoothing = 0;
         this.startPercent = 0;
         this.endPercent = 100;
         this.initVis();
@@ -46,7 +46,7 @@ class Chart {
         vis.wrangleData();
     }
 
-    // === Apply smoothing if selected ===
+
     wrangleData() {
         let vis = this;
 
@@ -117,7 +117,6 @@ class Chart {
         // Clear chart elements
         vis.svg.selectAll(".bar, .co2-line, .label-text").remove();
 
-        // === Draw temperature bars ===
         if (hasTemp) {
             vis.svg.selectAll(".bar")
                 .data(vis.displayData, d => d.Year)
@@ -136,7 +135,6 @@ class Chart {
                 );
         }
 
-        // === Draw CO₂ line ===
         if (hasCO2) {
             vis.line.y(d => vis.yRight(d.CO2ppm));
             vis.svg.append("path")
@@ -152,7 +150,6 @@ class Chart {
                 .attr("opacity", 1);
         }
 
-        // === Axis Labels ===
         vis.svg.selectAll(".label-text").remove();
 
         vis.svg.append("text")
@@ -184,7 +181,6 @@ class Chart {
         }
     }
 
-    // === Dual-slider filtering ===
     filterByRange(startPercent, endPercent) {
         let vis = this;
         let n = vis.fullData.length;
@@ -200,10 +196,9 @@ class Chart {
         d3.select("#yearRangeLabel").text(`${startYear} – ${endYear}`);
     }
 
-    // === Toggles ===
     setMetricMode(metric) {
         let vis = this;
-        vis.currentMetricMode = metric; // can be "TempAnomaly", "CO2ppm", or "both"
+        vis.currentMetricMode = metric;
         vis.updateVis();
     }
 

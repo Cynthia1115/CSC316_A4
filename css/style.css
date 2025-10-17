@@ -1,0 +1,67 @@
+/* Base */
+body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 0; }
+h1 { margin: 1rem 0 1.25rem; font-weight: 700; }
+#chart svg { display: block; max-width: 100%; height: auto; }
+
+/* Grid */
+.grid line { stroke: #e5e7eb; }
+
+/* Circles (points) */
+.dot {
+    stroke: #fff;
+    stroke-width: 1;
+    opacity: 0.85;
+    transition: opacity 120ms ease-in-out, transform 120ms ease-in-out;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+.dot:hover { opacity: 1; transform: scale(1.25); }
+
+/* Lines */
+.line { fill: none; stroke-width: 2.5px; }
+.line.TempAnomaly { stroke: #ef4444; } /* red */
+.line.CO2ppm      { stroke: #0ea5e9; } /* blue */
+
+/* Axes */
+.axis path,
+.axis line,
+.domain {
+    fill: none;
+    stroke: #888;
+    shape-rendering: crispEdges;
+}
+.axis text { font-size: 11px; }
+
+/* Axis labels */
+.axis-label {
+    fill: #666;
+    font-size: 12px;
+    text-anchor: middle;
+}
+
+/* Legend */
+.legend { font-size: 12px; display: flex; gap: 12px; align-items: center; }
+.legend .key { display: inline-flex; align-items: center; gap: 6px; color: #606770; }
+.legend .swatch { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.legend rect { stroke: #ccc; fill: none; }
+
+/* Tooltip */
+#tooltip {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 6px 8px;
+    box-shadow: 3px 3px 8px rgba(0,0,0,.2);
+    font-size: 13px;
+    pointer-events: none;
+}
+#tooltip.hidden { display: none; }
+
+/* Optional brush */
+.brush .selection {
+    fill: #2563eb;
+    fill-opacity: 0.15;
+    stroke: #2563eb;
+    shape-rendering: crispEdges;
+}

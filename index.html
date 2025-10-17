@@ -1,55 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Warming Curve — Interactive (CSC316 A4)</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Global Warming — Interactive Trends (D3)</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
-  <header class="header">
-    <h1>🌍 The Warming Curve: How Earth’s Temperature Has Changed Since 1880</h1>
-    <p class="lead">Animated exploration of global temperature anomalies using NASA GISTEMP (via DataHub). <span class="badge">D3.js v7</span></p>
-  </header>
-
-  <main class="wrap">
-    <section class="card">
-      <div class="viz" id="viz">
-        <svg id="chart" width="100%" height="480" role="img" aria-label="Global temperature anomaly line chart"></svg>
-        <div class="stripe-title">Heat stripes (hover to highlight year)</div>
-        <svg id="stripes" width="100%" height="70" role="img" aria-label="Annual heat stripes"></svg>
-        <div class="footer">Data: 
-          <a href="https://datahub.io/core/global-temp/r/annual.csv" target="_blank" rel="noopener">DataHub: Global Temperature Time Series (annual.csv)</a> 
-          · Fields: <code>Year</code>, <code>Mean</code>, <code>Source</code> (we use GCAG).
-        </div>
-      </div>
-      <div class="controls">
-        <button id="play">▶ Play</button>
-        <button id="pause">⏸ Pause</button>
-        <button id="reset">⟲ Reset</button>
-        <span class="label">Speed</span>
-        <input id="speed" type="range" min="0.25" max="3" step="0.25" value="1" />
-        <span id="speedVal" class="label">1×</span>
-        <span class="label" style="margin-left:10px">Smoothing</span>
-        <select id="smooth">
-          <option value="0">Raw</option>
-          <option value="5">5-year rolling</option>
-          <option value="10">10-year rolling</option>
+<header class="page-header">
+    <h1>Global Warming — Interactive Trends</h1>
+    <div class="controls">
+        <label for="metric">Metric:</label>
+        <select id="metric">
+            <option value="TempAnomaly">Temperature Anomaly (°C)</option>
+            <option value="CO2ppm">CO₂ (ppm)</option>
         </select>
-        <span class="label" style="margin-left:auto">Year</span>
-        <input id="scrub" type="range" min="1880" max="2024" step="1" value="1880" style="width:220px"/>
-        <span id="yearLabel" class="label">1880</span>
-      </div>
-    </section>
-  </main>
+        <label for="smoother" class="ml">Smoothing:</label>
+        <select id="smoother">
+            <option value="0">Off</option>
+            <option value="3">3-year</option>
+            <option value="5">5-year</option>
+        </select>
+    </div>
+</header>
 
-  <div id="tooltip" class="tooltip" style="opacity:0"></div>
+<main>
+    <div id="chart"></div>
+    <div id="tooltip" class="hidden"><p></p></div>
+</main>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="js/helpers.js"></script>
-  <script src="js/main.js"></script>
+<!-- Load helpers first, then main -->
+<script src="js/helperfunctions.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

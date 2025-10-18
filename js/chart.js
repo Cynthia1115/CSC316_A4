@@ -1,3 +1,13 @@
+// === Tooltip helpers (shared) ===
+const tt = d3.select("#tooltip");
+function showTT(html, event) {
+    tt.classed("hidden", false)
+        .style("left", (event.pageX + 12) + "px")
+        .style("top", (event.pageY - 28) + "px")
+        .select("p").html(html);
+}
+function hideTT(){ tt.classed("hidden", true); }
+
 class Chart {
     constructor(parentElement, data) {
         this.parentElement = parentElement;
@@ -115,7 +125,7 @@ class Chart {
         }
 
         // Clear chart elements
-        vis.svg.selectAll(".bar, .co2-line, .label-text").remove();
+        vis.svg.selectAll(".bar, .co2-line, .co2-dot, .label-text").remove();
 
         if (hasTemp) {
             vis.svg.selectAll(".bar")
@@ -137,6 +147,22 @@ class Chart {
 
         if (hasCO2) {
             vis.line.y(d => vis.yRight(d.CO2ppm));
+
+            // Attach interactions to bars
+            if (hasTemp) {
+                vis.svg.selectAll(".bar")
+                    .attr("role", "button")
+                    .attr("tabindex", 0)
+                    .on("mousemove", (event, d) => {
+                        showTT(`<strong>${d.Year}</strong><br/>Temp Anomaly: ${d3.format(".2f")(d.TempAnomaly)} °C`, event);
+                    })
+                    .on("mouseleave", hideTT)
+                    .on("click keydown", (event, d) => {
+                        if (event.type === "click" || event.key === "Enter" || event.key === " ") {
+                            showTT(`<strong>${d.Year}</strong><br/>Temp Anomaly: ${d3.format(".2f")(d.TempAnomaly)} °C`, event);
+                        }
+                    });
+            }
             vis.svg.append("path")
                 .datum(vis.displayData)
                 .attr("class", "co2-line")
@@ -148,6 +174,32 @@ class Chart {
                 .transition()
                 .duration(1000)
                 .attr("opacity", 1);
+            // Interactive dots on CO₂ line
+            if (hasCO2) {
+                vis.svg.selectAll(".co2-dot")
+                    .data(vis.displayData, d => d.Year)
+                    .join(
+                        enter => enter.append("circle")
+                            .attr("class", "co2-dot")
+                            .attr("cx", d => vis.x(d.Year) + vis.x.bandwidth()/2)
+                            .attr("cy", d => vis.yRight(d.CO2ppm))
+                            .attr("r", 3.5)
+                            .attr("fill", "#0ea5e9")
+                            .attr("stroke", "#fff")
+                            .attr("role", "button")
+                            .attr("tabindex", 0)
+                            .on("mousemove", (event, d) => {
+                                showTT(`<strong>${d.Year}</strong><br/>CO₂: ${d3.format(".0f")(d.CO2ppm)} ppm`, event);
+                            })
+                            .on("mouseleave", hideTT)
+                            .on("click keydown", (event, d) => {
+                                if (event.type === "click" || event.key === "Enter" || event.key === " ") {
+                                    showTT(`<strong>${d.Year}</strong><br/>CO₂: ${d3.format(".0f")(d.CO2ppm)} ppm`, event);
+                                }
+                            })
+                    );
+            }
+
         }
 
         vis.svg.selectAll(".label-text").remove();

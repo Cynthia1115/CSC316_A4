@@ -75,5 +75,5 @@ The design goal was to create an **interactive, educational** tool that balances
 
 ### 🧑‍💻 Authors & Credits
 Project by **Cynthia Liu** , **Ayaan Asif** , **CTasheen Rana** 
-University of Toronto — *CSC316: Data Visualization and Storytelling*  
+University of Toronto — *CSC316: Data Visualization * 
 Inspired by real-world climate datasets and the mission to make data-driven stories engaging and accessible.

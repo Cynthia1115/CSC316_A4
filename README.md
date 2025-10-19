@@ -146,14 +146,12 @@ It demonstrates:
 
 ## 🧾 10. Directory Structure
 
-project/
-├── index.html
-├── css/
-│ └── style.css
-├── js/
-│ ├── chart.js
-│ └── main.js
-└── data/
-└── annual.csv
-
----
+- project/
+- ├── index.html
+- ├── css/
+- │ └── style.css
+- ├── js/
+- │ ├── chart.js
+- │ └── main.js
+- └── data/
+- └── annual.csv

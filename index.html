@@ -1,44 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8" />
+    <title>Tracing Earth's Fever — Interactive Trends in Temperature & Carbon</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Global Warming — Interactive Trends (D3)</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
 <header class="page-header">
-    <h1>Global Warming — Interactive Trends</h1>
-    <div class="controls">
-        <label for="smoother">Smoothing:</label>
-        <select id="smoother">
-            <option value="0">Off</option>
-            <option value="3">3-year</option>
-            <option value="5">5-year</option>
-        </select>
-
-        <label class="ml">Year Range:</label>
-        <div class="ml" id="year-range-container">
-            <input type="range" id="yearStart" min="0" max="100" value="0" step="1">
-            <input type="range" id="yearEnd" min="0" max="100" value="100" step="1">
-            <span id="yearRangeLabel" style="margin-left:10px;"></span>
-        </div>
-
-        <div class="ml">
-            <button id="show-temp">Temperature Only</button>
-            <button id="show-co2">CO₂ Only</button>
-            <button id="show-both">Both</button>
-        </div>
-    </div>
+    <h1>Tracing Earth's Fever — <span class="thin">Interactive Trends in Temperature & Carbon</span></h1>
 </header>
 
+<section class="controls">
+    <label>Smoothing:
+        <select id="smoothing">
+            <option value="0">Off</option>
+            <option value="3">3-yr</option>
+            <option value="5">5-yr</option>
+        </select>
+    </label>
+
+    <div class="year-range-label">
+        <strong>Year Range:</strong>
+        <span id="rangeLabel">—</span>
+    </div>
+
+    <div class="btn-group">
+        <button id="btnTemp" class="btn">Temperature Only</button>
+        <button id="btnCO2" class="btn">CO₂ Only</button>
+        <button id="btnBoth" class="btn btn-primary">Both</button>
+    </div>
+
+    <div class="story-controls">
+        <button id="btnPlay" class="btn-outline">▶ Play Story</button>
+        <button id="btnPrev" class="btn-outline">⟨ Prev</button>
+        <button id="btnNext" class="btn-outline">Next ⟩</button>
+    </div>
+</section>
+
 <main>
-    <div id="chart"></div>
-    <div id="tooltip" class="hidden"><p></p></div>
+    <div id="chartContainer"></div>
 </main>
 
-<!-- Load helpers first, then main -->
+<!-- Tooltip -->
+<div id="tooltip" class="tooltip hidden"><p> </p></div>
+
+<footer class="kb">
+    <strong>Shortcuts:</strong>
+    <span>1=Temp, 2=CO₂, 3=Both</span>
+    <span>←/→ shift window</span>
+    <span>S toggle smoothing</span>
+    <span>P play/pause story</span>
+</footer>
+
 <script src="js/chart.js"></script>
 <script src="js/main.js"></script>
 </body>

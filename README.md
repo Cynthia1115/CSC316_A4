@@ -1,150 +1,189 @@
 # CSC316_A4
 This is for the CSC316 A4 Interactive Visualization
+# 🌍 Tracing Earth’s Fever — Interactive Trends in Temperature & Carbon
 
-# 🌍 Global Warming — Interactive Trends
-
-# Tracing Earth’s Fever — Interactive Trends in Temperature & Carbon
-
-An interactive, multi-view D3.js visualization exploring the long-term relationship between **global temperature anomalies** and **atmospheric CO₂**.  
-The project blends **data storytelling**, **interactive controls**, and **aesthetic design** to convey the narrative of climate change through data.
+An interactive D3.js visualization exploring the long-term relationship between **global temperature anomalies** and **atmospheric CO₂ concentrations**.  
+The project blends scientific data, narrative storytelling, and elegant interaction design to help viewers intuitively understand how Earth’s atmosphere has changed over the past century.
 
 ---
 
-## 🌍 1. Overview
+## 📘 Dataset Description
 
-This visualization links two key climate indicators:
+### Combined Climate Dataset — Temperature Anomalies and CO₂ Concentrations
 
-- **Temperature Anomaly (°C)** — global surface temperature relative to a baseline (0-line).  
-  Red/yellow bars = warmer years; blue bars = cooler years.
+This dataset merges:
+- **NASA GISTEMP v4** (Global Land–Ocean Temperature Index)  
+- **NOAA Mauna Loa CO₂ Record**, with pre-1958 values extended from **Scripps Ice Core reconstructions**
 
-- **Atmospheric CO₂ (ppm)** — annual mean carbon dioxide concentration.  
-  Shown as a smooth **green line** with optional glow, symbolizing the rise in greenhouse gases.
+It covers **annual global mean temperature anomalies** (°C relative to the 1951–1980 average) and **atmospheric CO₂ concentrations** (ppm).
 
-Together, they form a **dual-axis story** of how Earth’s atmosphere and temperature have evolved over the last seven decades.
+| Column | Description |
+|:--------|:-------------|
+| `Year` | Calendar year (1880 – present) |
+| `Temp_Anomaly` | Global mean surface temperature anomaly (°C) relative to 1951–1980 baseline |
+| `CO2_ppm` | Atmospheric CO₂ concentration (parts per million), measured at Mauna Loa or estimated from ice cores pre-1958 |
 
----
-
-## 📊 2. Dataset Description
-
-**File:** `data/annual.csv`
-
-| Column        | Type    | Description                                                   |
-|----------------|---------|---------------------------------------------------------------|
-| `Year`         | number  | Year of observation (e.g., 1958–2024).                       |
-| `TempAnomaly`  | number  | Annual mean surface temperature anomaly (°C) vs baseline.     |
-| `CO2ppm`       | number  | Annual mean CO₂ concentration (parts per million).            |
-
-**Notes:**
-- Data covers modern instrumental records (post-1950s).
-- Missing values (`null`) are handled gracefully and excluded from smoothing.
-- Both metrics are aggregated by year for clarity and comparability.
+### 🔗 Source References
+- **NASA GISTEMP v4** – Global Land-Ocean Temperature Index  
+  https://data.giss.nasa.gov/gistemp/  
+- **NOAA Global Monitoring Laboratory** – Mauna Loa CO₂ Record  
+  https://gml.noaa.gov/ccgg/trends/data.html  
+- **Scripps CO₂ Program** – Ice-core extension (pre-1958)  
 
 ---
 
-## 🧭 3. Story Mode — The Narrative
+## 🎯 Purpose and Analytical Goals
 
-The visualization includes a **guided story sequence** that automatically highlights key historical patterns:
+The visualization aims to:
 
-1. **Cool Mid-20th Century (1960–1975)**  
-   Bars dip below the baseline — a cooler era preceding the modern warming trend.
+- Compare **atmospheric CO₂ growth** with **rising global temperature anomalies**.  
+- Reveal how warming accelerated after the industrial era (≈1950 onward).  
+- Encourage exploration of the **correlation** between greenhouse gases and surface temperature (r ≈ 0.9 since 1958).  
+- Educate users on the **link between human emissions and observable climate change**.
 
-2. **1998 El Niño Spike (1988–2000)**  
-   A sharp positive anomaly marks a major El Niño event, visually distinct in the warming trajectory.
+---
+## 🎬 Storyboard — *"Tracing Earth’s Fever"*
 
-3. **2016 Record Warmth (2009–2017)**  
-   The highest anomalies on record; persistent red bars reflect long-term change.
-
-4. **Recent Highs (2015–2024)**  
-   CO₂ surpasses 420 ppm, and anomalies remain elevated — a vivid pairing of carbon and heat.
-
-> When you **pause** the story, the visualization **resets** to the **full range view** with both series visible, encouraging exploration beyond the scripted scenes.
+The storyboard follows a **four-stage data story arc** that blends science with emotion.
 
 ---
 
-## 🧩 4. Interaction Features
+### 🎣 1. Hook — *“The Planet’s Pulse”*
+**Scene:**  
+The visualization opens in full view — a clean dual-axis chart.  
+Temperature bars fluctuate around zero, while the CO₂ line begins its steady rise.  
+Muted narration or labels read:  
+> “Every year, our planet breathes — warming, cooling, changing. But something deeper is shifting.”
 
-| Feature | Description |
-|----------|-------------|
-| **Focus + Context** | Brushed CO₂ overview allows zooming into specific decades. |
-| **Toggle Metrics** | View Temperature only, CO₂ only, or both together. |
-| **Smoothing** | Apply 3-year or 5-year moving averages to clarify long-term trends. |
-| **Story Mode** | Auto-narrated view that pans through key historical events. |
-| **Keyboard Shortcuts** | `1` Temp only · `2` CO₂ only · `3` Both · `S` toggle smoothing · `P` play/pause · `←/→` shift window |
-| **Responsive Design** | Automatically adapts to browser width. |
-
----
-
-## 🎨 5. Design Rationale
-
-### Multi-view coordination
-A **focus + context** design helps users navigate large temporal ranges while maintaining orientation.
-
-### Color symbolism
-- Warm anomalies → **gradient of red to yellow**  
-- Cool anomalies → **gradient of blue to navy**  
-- CO₂ line → **green glow**, representing environmental change and growth of carbon concentration.
-
-### Layout choices
-- **Baseline-anchored x-axis**: Labels sit on the 0°C line when temperature is active, reinforcing the “above/below normal” concept.  
-- **Dual y-axes**: Left for temperature, right for CO₂.  
-- **Annotations**: Pulsing dots mark record-high temperatures.  
-
-### Aesthetic style
-- Minimal gridlines and soft gradients for elegance.  
-- Balanced padding and hierarchy for legibility.  
-- Cohesive typographic system (`Inter` font family).
+**Purpose:**  
+Grab attention and establish rhythm. The viewer notices that CO₂ only moves upward, even as temperatures oscillate.
 
 ---
 
-## 🔍 6. Insights
+### 📈 2. Rising Insights — *“When Patterns Align”*
+**Scene:**  
+User zooms into 1960–2000 using the **brush**.  
+Temperature bars turn red more often; CO₂ steepens.  
+The **Story Mode** guides attention with smooth transitions.  
+Captions highlight:  
+> “Short-term variability hides long-term truth.”  
+> “By 1998, a single El Niño pushes global temperature to new highs.”
 
-1. **Persistent Warming Trend**  
-   Bars shift from blue to red as time progresses, showing that warming dominates the recent decades.
-
-2. **CO₂ Growth Mirrors Temperature Rise**  
-   The green line steadily increases, closely aligned with the pattern of positive anomalies.
-
-3. **Short-term Variability vs. Long-term Pattern**  
-   Individual cool years remain, but the overall signal is upward.
-
-4. **Smoothing Clarifies Structure**  
-   3- and 5-year moving averages reveal a clear structural warming trend without short-term noise.
+**Purpose:**  
+Reveal emerging correlation — local ups and downs fade in importance as the general trend aligns.
 
 ---
 
-## ⚠️ 7. Limitations
+### 💡 3. Main Message — *“The Heat is Relentless”*
+**Scene:**  
+The Story Mode zooms into 2009–2017.  
+Bars are consistently above zero, and the CO₂ line glows brighter green.  
+Annotation pulse marks **2016 — Record Warm Year**.  
+Narration (or subtitle):  
+> “Even without El Niño, warmth has become the new normal.”
 
-- **Baseline sensitivity:** The zero line depends on the chosen reference period.  
-- **Temporal granularity:** Annual averages mask intra-year variability and extremes.  
-- **No causal proof:** Correlation between CO₂ and temperature is visual, not statistical evidence of causality.  
-- **Data completeness:** Some early or edge years may lack one variable.  
-- **Simplified units:** Global averages hide regional disparities and feedback dynamics.
-
----
-
-## 🧠 8. Educational Value
-
-This project transforms abstract climate statistics into an accessible, emotionally resonant narrative.  
-It demonstrates:
-- How **data visualization can reveal long-term structure**, not just raw trends.  
-- How thoughtful **interaction design** enhances engagement and retention.  
-- How **color, motion, and context** can evoke both scientific insight and storytelling.
+**Purpose:**  
+Drive home the continuity and persistence of modern warming. Visual saturation of red conveys urgency without words.
 
 ---
 
-## 🛠️ 9. Technical Details
+### 🌱 4. Resolution — *“Seeing the Link”*
+**Scene:**  
+The animation pans back to **full range view**, resetting both datasets.  
+The CO₂ curve remains high and steady, contrasting against decades of rising red bars.  
+Subtle text overlay:  
+> “Two curves, one story — a shared trajectory of carbon and heat.”
 
-- **Framework:** D3.js (v7)  
-- **Structure:** Modular JS (`chart.js`, `main.js`) + static HTML/CSS  
-- **Scales:** Linear (time, value)  
-- **Smoothing:** Centered moving average, ignores `null` values  
-- **Clip path:** Inner-coordinate clipping to avoid masking artifacts  
-- **Responsiveness:** Dynamic width recomputation with window resize  
-- **Animations:** Transitions for story playback and annotations  
+**Purpose:**  
+Encourage reflection. The full-view reset allows viewers to explore on their own — zoom, smooth, and connect insights personally.
 
 ---
 
-## 🧾 10. Directory Structure
+## 🧭 Visualization Overview
+
+### Main Components
+- **Bars** → Temperature anomalies (blue = cooler, red = warmer)  
+- **Green line** → CO₂ concentration (ppm), using a smooth curve and subtle glow  
+- **Dual axes** → °C on the left, ppm on the right  
+- **Brushable context chart** → CO₂ overview at bottom controlling main focus  
+- **Dynamic x-axis** → Labels anchored to the 0 °C baseline  
+- **Annotations** → Pulsing highlights for record-warm years  
+
+### Controls
+- **Metric toggle**: Temperature / CO₂ / Both  
+- **Smoothing**: Off / 3-year / 5-year centered moving average  
+- **Story Mode**: Animated narrative walkthrough of four climate eras  
+- **Keyboard shortcuts**:  
+  `1` Temp | `2` CO₂ | `3` Both | `S` toggle smoothing | `P` play/pause | `← →` shift window  
+
+When Story Mode is **paused**, the visualization automatically **resets** to the full-range, dual-metric default view.
+
+---
+
+## 🎬 Story Mode Highlights
+
+| Scene | Years | Focus | Key Insight |
+|:------|:------|:------|:------------|
+| 1️⃣ | 1960–1975 | Temperature | Mid-century cooling before modern warming trend |
+| 2️⃣ | 1988–2000 | Both | 1998 El Niño spike and rapid recovery |
+| 3️⃣ | 2009–2017 | Temperature | 2016 record warmth — persistent positive anomalies |
+| 4️⃣ | 2015–2024 | Both | CO₂ surpasses 420 ppm; continued high temperatures |
+
+---
+
+## 💡 Key Design Decisions
+
+- **Dual encoding** (bars + line) clearly differentiates additive CO₂ accumulation vs. fluctuating temperature deviations.  
+- **Warm-to-cool gradient** instantly communicates direction and magnitude.  
+- **Green CO₂ line** creates visual contrast and environmental symbolism.  
+- **Inner-coordinate clipping** eliminates visual gaps from resizing or brushing.  
+- **Baseline-anchored x-axis** reinforces the idea of “above vs. below normal.”  
+- **Multi-view coordination** (focus + context) enables zooming without losing orientation.  
+- **Subtle animation and glow** increase depth without distraction.  
+
+---
+
+## 📈 Insights
+
+1. **Persistent Warming Trend** – Post-1980s, almost every year is above the zero baseline.  
+2. **CO₂ and Temperature Rise Together** – The visual correlation between the green line and red bars is unmistakable.  
+3. **Accelerating Growth** – CO₂ climbs steadily while temperature anomalies increase non-linearly.  
+4. **Smoothing Exposes Structure** – 3- and 5-year averages reveal stable upward momentum.  
+
+---
+
+## ⚠️ Limitations
+
+- **Baseline sensitivity:** The “zero” line depends on the chosen 1951–1980 reference period.  
+- **Temporal resolution:** Annual aggregation hides monthly and seasonal variability.  
+- **No causal inference:** The visualization illustrates correlation, not proof of causation.  
+- **Uncertainty:** Measurement and reconstruction errors are not visualized.  
+- **Global averaging:** Regional extremes are not represented.  
+
+---
+
+## 🧠 Educational & Design Impact
+
+This project demonstrates how **data storytelling** and **interaction design** can transform raw climate data into an accessible narrative.  
+It bridges **science and emotion** by combining accuracy, interactivity, and visual storytelling — helping viewers *see* Earth’s fever in motion.
+
+---
+
+## 🛠️ Technical Implementation
+
+| Aspect | Details |
+|:-------|:---------|
+| **Framework** | D3.js (v7) |
+| **Files** | `index.html`, `css/style.css`, `js/chart.js`, `js/main.js`, `data/annual.csv` |
+| **Scales** | Linear for both axes |
+| **Smoothing** | Centered moving average ignoring nulls |
+| **Animations** | D3 transitions + timed story playback |
+| **Responsiveness** | Dynamic width + resize event handling |
+| **Annotations** | Pulsing record-year markers with CSS keyframes |
+
+---
+
+## 📁 Directory Structure
 
 - project/
 - ├── index.html

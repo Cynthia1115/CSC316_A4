@@ -42,6 +42,62 @@ The visualization aims to:
 - Educate users on the **link between human emissions and observable climate change**.
 
 ---
+## 🎬 Storyboard — *"Tracing Earth’s Fever"*
+
+The storyboard follows a **four-stage data story arc** that blends science with emotion.
+
+---
+
+### 🎣 1. Hook — *“The Planet’s Pulse”*
+**Scene:**  
+The visualization opens in full view — a clean dual-axis chart.  
+Temperature bars fluctuate around zero, while the CO₂ line begins its steady rise.  
+Muted narration or labels read:  
+> “Every year, our planet breathes — warming, cooling, changing. But something deeper is shifting.”
+
+**Purpose:**  
+Grab attention and establish rhythm. The viewer notices that CO₂ only moves upward, even as temperatures oscillate.
+
+---
+
+### 📈 2. Rising Insights — *“When Patterns Align”*
+**Scene:**  
+User zooms into 1960–2000 using the **brush**.  
+Temperature bars turn red more often; CO₂ steepens.  
+The **Story Mode** guides attention with smooth transitions.  
+Captions highlight:  
+> “Short-term variability hides long-term truth.”  
+> “By 1998, a single El Niño pushes global temperature to new highs.”
+
+**Purpose:**  
+Reveal emerging correlation — local ups and downs fade in importance as the general trend aligns.
+
+---
+
+### 💡 3. Main Message — *“The Heat is Relentless”*
+**Scene:**  
+The Story Mode zooms into 2009–2017.  
+Bars are consistently above zero, and the CO₂ line glows brighter green.  
+Annotation pulse marks **2016 — Record Warm Year**.  
+Narration (or subtitle):  
+> “Even without El Niño, warmth has become the new normal.”
+
+**Purpose:**  
+Drive home the continuity and persistence of modern warming. Visual saturation of red conveys urgency without words.
+
+---
+
+### 🌱 4. Resolution — *“Seeing the Link”*
+**Scene:**  
+The animation pans back to **full range view**, resetting both datasets.  
+The CO₂ curve remains high and steady, contrasting against decades of rising red bars.  
+Subtle text overlay:  
+> “Two curves, one story — a shared trajectory of carbon and heat.”
+
+**Purpose:**  
+Encourage reflection. The full-view reset allows viewers to explore on their own — zoom, smooth, and connect insights personally.
+
+---
 
 ## 🧭 Visualization Overview
 

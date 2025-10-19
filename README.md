@@ -3,77 +3,155 @@ This is for the CSC316 A4 Interactive Visualization
 
 # 🌍 Global Warming — Interactive Trends
 
-### Overview
-This interactive visualization explores the long-term relationship between **global temperature anomalies** and **atmospheric CO₂ concentrations** from **1958 to 2024**. It combines two major climate indicators into a single coordinated view — showing how the planet’s average temperature has risen in tandem with increasing greenhouse gas levels.
+# Tracing Earth’s Fever — Interactive Trends in Temperature & Carbon
+
+An interactive, multi-view D3.js visualization exploring the long-term relationship between **global temperature anomalies** and **atmospheric CO₂**.  
+The project blends **data storytelling**, **interactive controls**, and **aesthetic design** to convey the narrative of climate change through data.
 
 ---
 
-### 📊 Dataset Description
-The dataset used (`data/annual.csv`) contains annual global averages for:
-- **Year** — 1958 to 2024  
-- **Temperature Anomaly (°C)** — deviation from the 20th-century baseline  
-- **CO₂ concentration (ppm)** — atmospheric CO₂ recorded at Mauna Loa Observatory
+## 🌍 1. Overview
 
-These values come from publicly available climate monitoring records (NASA GISS & NOAA’s ESRL datasets).
+This visualization links two key climate indicators:
 
----
+- **Temperature Anomaly (°C)** — global surface temperature relative to a baseline (0-line).  
+  Red/yellow bars = warmer years; blue bars = cooler years.
 
-### 🎨 Visualization Description
-The main chart integrates two synchronized elements:
-- **Vertical bars** (blue to red gradient): show the yearly temperature anomaly relative to the baseline.  
-  - Blue bars = cooler than average  
-  - Red bars = warmer than average  
-- **Smooth blue line with dots**: represents the atmospheric CO₂ concentration over time (ppm).  
+- **Atmospheric CO₂ (ppm)** — annual mean carbon dioxide concentration.  
+  Shown as a smooth **green line** with optional glow, symbolizing the rise in greenhouse gases.
 
-Users can:
-- **Hover or click** on bars/dots to reveal exact numeric values.  
-- **Filter** between *Temperature*, *CO₂*, or *Both* using toggle buttons.  
-- **Adjust the year range** via the dual slider to zoom into specific decades.  
-- **Toggle smoothing** to simplify trends for clarity.
+Together, they form a **dual-axis story** of how Earth’s atmosphere and temperature have evolved over the last seven decades.
 
 ---
 
-### 🧭 Story & Insights
-This visualization tells a simple yet powerful story:  
-As atmospheric CO₂ rises, global temperatures follow a parallel upward trend.
+## 📊 2. Dataset Description
 
-Key takeaways:
-- From 1958 to the late 1970s, temperatures fluctuated near or slightly below the 0 °C baseline while CO₂ rose steadily past 320 ppm.  
-- After 1980, both indicators climb sharply — marking the onset of accelerated global warming.  
-- In the 2010s, CO₂ surpasses **400 ppm**, coinciding with record-breaking temperature anomalies near **+1.2 °C**.  
-- The visual convergence of line and bars highlights the **tight correlation between human activity and climate change**.
+**File:** `data/annual.csv`
 
----
+| Column        | Type    | Description                                                   |
+|----------------|---------|---------------------------------------------------------------|
+| `Year`         | number  | Year of observation (e.g., 1958–2024).                       |
+| `TempAnomaly`  | number  | Annual mean surface temperature anomaly (°C) vs baseline.     |
+| `CO2ppm`       | number  | Annual mean CO₂ concentration (parts per million).            |
 
-### 💡 Inspiration
-This project draws inspiration from NASA’s *Climate Spiral* and *Our World in Data*’s long-term temperature plots.  
-The design goal was to create an **interactive, educational** tool that balances aesthetic appeal and scientific integrity — helping viewers *see* the connection between emissions and warming trends rather than just read about it.
-
----
-
-### ⚙️ Technical Stack
-- **D3.js v7** — for dynamic SVG rendering and interactivity  
-- **HTML5 + CSS3** — layout, responsive design, and styling  
-- **JavaScript (modular)** — structured into `main.js`, `chart.js`, and `helperfunctions.js` for clarity  
+**Notes:**
+- Data covers modern instrumental records (post-1950s).
+- Missing values (`null`) are handled gracefully and excluded from smoothing.
+- Both metrics are aggregated by year for clarity and comparability.
 
 ---
 
-### ⚠️ Limitations
-- **Correlation ≠ causation** — while the data strongly correlates, this visualization does not prove direct causality.  
-- **Temporal resolution** — the dataset is yearly, smoothing out short-term climate variability.  
-- **No regional breakdown** — data shows global averages, not local or seasonal variations.  
-- **Visual scalability** — extreme zooming or resizing can distort aspect ratios on some browsers.  
+## 🧭 3. Story Mode — The Narrative
+
+The visualization includes a **guided story sequence** that automatically highlights key historical patterns:
+
+1. **Cool Mid-20th Century (1960–1975)**  
+   Bars dip below the baseline — a cooler era preceding the modern warming trend.
+
+2. **1998 El Niño Spike (1988–2000)**  
+   A sharp positive anomaly marks a major El Niño event, visually distinct in the warming trajectory.
+
+3. **2016 Record Warmth (2009–2017)**  
+   The highest anomalies on record; persistent red bars reflect long-term change.
+
+4. **Recent Highs (2015–2024)**  
+   CO₂ surpasses 420 ppm, and anomalies remain elevated — a vivid pairing of carbon and heat.
+
+> When you **pause** the story, the visualization **resets** to the **full range view** with both series visible, encouraging exploration beyond the scripted scenes.
 
 ---
 
-### 🌱 Future Improvements
-- Add **trendline regression** and **statistical correlation coefficient (r²)**.  
-- Include **annotations** for major global climate events (e.g., El Niño years, volcanic eruptions).  
-- Add **responsive storytelling sections** that guide the viewer through key insights.  
+## 🧩 4. Interaction Features
+
+| Feature | Description |
+|----------|-------------|
+| **Focus + Context** | Brushed CO₂ overview allows zooming into specific decades. |
+| **Toggle Metrics** | View Temperature only, CO₂ only, or both together. |
+| **Smoothing** | Apply 3-year or 5-year moving averages to clarify long-term trends. |
+| **Story Mode** | Auto-narrated view that pans through key historical events. |
+| **Keyboard Shortcuts** | `1` Temp only · `2` CO₂ only · `3` Both · `S` toggle smoothing · `P` play/pause · `←/→` shift window |
+| **Responsive Design** | Automatically adapts to browser width. |
 
 ---
 
-### 🧑‍💻 Authors & Credits
-Project by **Cynthia Liu** , **Ayaan Asif** , **CTasheen Rana** 
-University of Toronto — *CSC316: Data Visualization* 
-Inspired by real-world climate datasets and the mission to make data-driven stories engaging and accessible.
+## 🎨 5. Design Rationale
+
+### Multi-view coordination
+A **focus + context** design helps users navigate large temporal ranges while maintaining orientation.
+
+### Color symbolism
+- Warm anomalies → **gradient of red to yellow**  
+- Cool anomalies → **gradient of blue to navy**  
+- CO₂ line → **green glow**, representing environmental change and growth of carbon concentration.
+
+### Layout choices
+- **Baseline-anchored x-axis**: Labels sit on the 0°C line when temperature is active, reinforcing the “above/below normal” concept.  
+- **Dual y-axes**: Left for temperature, right for CO₂.  
+- **Annotations**: Pulsing dots mark record-high temperatures.  
+
+### Aesthetic style
+- Minimal gridlines and soft gradients for elegance.  
+- Balanced padding and hierarchy for legibility.  
+- Cohesive typographic system (`Inter` font family).
+
+---
+
+## 🔍 6. Insights
+
+1. **Persistent Warming Trend**  
+   Bars shift from blue to red as time progresses, showing that warming dominates the recent decades.
+
+2. **CO₂ Growth Mirrors Temperature Rise**  
+   The green line steadily increases, closely aligned with the pattern of positive anomalies.
+
+3. **Short-term Variability vs. Long-term Pattern**  
+   Individual cool years remain, but the overall signal is upward.
+
+4. **Smoothing Clarifies Structure**  
+   3- and 5-year moving averages reveal a clear structural warming trend without short-term noise.
+
+---
+
+## ⚠️ 7. Limitations
+
+- **Baseline sensitivity:** The zero line depends on the chosen reference period.  
+- **Temporal granularity:** Annual averages mask intra-year variability and extremes.  
+- **No causal proof:** Correlation between CO₂ and temperature is visual, not statistical evidence of causality.  
+- **Data completeness:** Some early or edge years may lack one variable.  
+- **Simplified units:** Global averages hide regional disparities and feedback dynamics.
+
+---
+
+## 🧠 8. Educational Value
+
+This project transforms abstract climate statistics into an accessible, emotionally resonant narrative.  
+It demonstrates:
+- How **data visualization can reveal long-term structure**, not just raw trends.  
+- How thoughtful **interaction design** enhances engagement and retention.  
+- How **color, motion, and context** can evoke both scientific insight and storytelling.
+
+---
+
+## 🛠️ 9. Technical Details
+
+- **Framework:** D3.js (v7)  
+- **Structure:** Modular JS (`chart.js`, `main.js`) + static HTML/CSS  
+- **Scales:** Linear (time, value)  
+- **Smoothing:** Centered moving average, ignores `null` values  
+- **Clip path:** Inner-coordinate clipping to avoid masking artifacts  
+- **Responsiveness:** Dynamic width recomputation with window resize  
+- **Animations:** Transitions for story playback and annotations  
+
+---
+
+## 🧾 10. Directory Structure
+
+- project/
+- ├── index.html
+- ├── css/
+- │ └── style.css
+- ├── js/
+- │ ├── chart.js
+- │ └── main.js
+- └── data/
+- └── annual.csv

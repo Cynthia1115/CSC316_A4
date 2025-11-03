@@ -7,6 +7,18 @@
     }));
 
     const chart = new Chart("chartContainer", data);
+    window.chart = chart; // expose for reset/debug
+    const btnReset = document.getElementById("btnReset");
+    if (btnReset) btnReset.onclick = ()=>{ chart.play(false); chart.resetToDefault(); setActive(btnBoth); btnPlay.textContent = "▶ Play Story"; };
+
+    // Build legend (HTML for accessibility)
+    const legendHost = document.getElementById("legend");
+    if (legendHost){
+        legendHost.innerHTML = '<span style="font-weight:600; color:#c7d2e4">Legend:</span>' +
+            '<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;background:linear-gradient(180deg,#e63946,#ffb703);display:inline-block;border-radius:2px"></span>Temp anomaly</span>' +
+            '<span style="display:inline-flex;align-items:center;gap:6px"><span style="width:12px;height:12px;background:#16a34a;border-radius:50%;display:inline-block"></span>CO₂ (ppm)</span>';
+    }
+
 
     // Link the external year-range label to brush updates
     const rangeLabel = document.getElementById("rangeLabel");
@@ -45,9 +57,7 @@
         } else {
             btnPlay.textContent = "▶ Play Story";
             chart.play(false);
-            // >>> On pause, snap back to full-range + both
-            chart.resetToDefault();
-            setActive(btnBoth);
+            // Keep current scene visible (no auto-reset)
         }
     };
     btnPrev.onclick = ()=>{ chart.play(false); playing=false; btnPlay.textContent="▶ Play Story"; chart.goToStep((chart._stepIndex??0)-1); };
@@ -76,3 +86,7 @@
         }
     });
 })();
+
+
+    const btnReset = document.getElementById("btnReset");
+    btnReset.onclick = ()=>{ chart.resetToDefault(); setActive(btnBoth); };

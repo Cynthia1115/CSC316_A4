@@ -1,60 +1,53 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>Tracing Earth's Fever — Interactive Trends in Temperature & Carbon</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <script src="https://d3js.org/d3.v7.min.js"></script>
+<meta charset="utf-8"/>
+<title>Tracing Earth's Fever — Interactive Trends in Temperature &amp; Carbon</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+<script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
 <header class="page-header">
-    <h1>Tracing Earth's Fever — <span class="thin">Interactive Trends in Temperature & Carbon</span></h1>
+<h1>Tracing Earth's Fever — <span class="thin">Interactive Trends in Temperature &amp; Carbon</span></h1>
 </header>
-
 <section class="controls">
-    <label>Smoothing:
+<label>Smoothing:
         <select id="smoothing">
-            <option value="0">Off</option>
-            <option value="3">3-yr</option>
-            <option value="5">5-yr</option>
-        </select>
-    </label>
-
-    <div class="year-range-label">
-        <strong>Year Range:</strong>
-        <span id="rangeLabel">—</span>
-    </div>
-
-    <div class="btn-group">
-        <button id="btnTemp" class="btn">Temperature Only</button>
-        <button id="btnCO2" class="btn">CO₂ Only</button>
-        <button id="btnBoth" class="btn btn-primary">Both</button>
-    </div>
-
-    <div class="story-controls">
-        <button id="btnPlay" class="btn-outline">▶ Play Story</button>
-        <button id="btnPrev" class="btn-outline">⟨ Prev</button>
-        <button id="btnNext" class="btn-outline">Next ⟩</button>
-    </div>
-</section>
-
+<option value="0">Off</option>
+<option value="3">3-yr</option>
+<option value="5">5-yr</option>
+</select>
+</label>
+<div class="year-range-label">
+<strong>Year Range:</strong>
+<span id="rangeLabel">—</span>
+</div>
+<div class="btn-group">
+<button class="btn" id="btnTemp">Temperature Only</button>
+<button class="btn" id="btnCO2">CO₂ Only</button>
+<button class="btn btn-primary" id="btnBoth">Both</button>
+</div>
+<div class="story-controls">
+<button class="btn-outline" id="btnPlay" title="Play/pause a narrated tour through the data">▶ Play Story</button>
+<button class="btn-outline" id="btnPrev" title="Previous story step">⟨ Prev</button>
+<button class="btn-outline" id="btnNext" title="Next story step">Next ⟩</button>
+<button class="btn-outline" id="btnReset" onclick="location.reload()" title="Reset everything to the initial state">Reset</button></div>
+<div id="legend" style="margin-left:auto; display:flex; align-items:center; gap:10px"></div></section>
 <main>
-    <div id="chartContainer"></div>
+<div id="chartContainer"></div>
 </main>
-
 <!-- Tooltip -->
-<div id="tooltip" class="tooltip hidden"><p> </p></div>
-
+<div class="tooltip hidden" id="tooltip"><p> </p></div>
 <footer class="kb">
-    <strong>Shortcuts:</strong>
-    <span>1=Temp, 2=CO₂, 3=Both</span>
-    <span>←/→ shift window</span>
-    <span>S toggle smoothing</span>
-    <span>P play/pause story</span>
+<strong>Shortcuts:</strong>
+<span>1=Temp, 2=CO₂, 3=Both</span>
+<span>←/→ shift window</span>
+<span>S toggle smoothing</span>
+<span>P play/pause story</span>
 </footer>
-
 <script src="js/chart.js"></script>
 <script src="js/main.js"></script>
 </body>

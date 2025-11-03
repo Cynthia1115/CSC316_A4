@@ -116,7 +116,7 @@ Encourage reflection. The full-view reset allows viewers to explore on their own
 - **Keyboard shortcuts**:  
   `1` Temp | `2` CO₂ | `3` Both | `S` toggle smoothing | `P` play/pause | `← →` shift window  
 
-When Story Mode is **paused**, the visualization automatically **resets** to the full-range, dual-metric default view.
+When Story Mode is **paused**, the visualization **stays on the current scene** (no reset). You can resume or navigate with Next/Prev.
 
 ---
 
@@ -194,3 +194,11 @@ It bridges **science and emotion** by combining accuracy, interactivity, and vis
 - │ └── main.js
 - └── data/
 - └── annual.csv
+
+
+### ℹ️ What is a temperature anomaly?
+A *temperature anomaly* is the difference between the observed global mean temperature and a fixed baseline average. Here we use the **1951–1980** global mean as the baseline, so an anomaly of **+0.80 °C** means that year's global mean was 0.80 °C warmer than the 1951–1980 average.
+
+
+### ℹ️ CO₂ axis note
+For legibility, the **CO₂ (ppm)** right-hand axis starts near the observed data range (≈ **320 ppm** for this subset) rather than at 0. The right axis is a **separate scale** from temperature (left axis). A legend/info label in the chart indicates this to avoid implying direct numeric comparability.

@@ -18,7 +18,7 @@ class Chart {
 
         this.margin = { top: 56, right: 120, bottom: 130, left: 110 };  // extra bottom for context
         this.contextHeight = 80;
-        this.height = 520;
+        this.height = 460;  // reduced to fit brush without scrolling
 
         this.initVis();
         window.addEventListener("resize", () => this.resize());
@@ -114,7 +114,14 @@ class Chart {
         vis.cx = d3.scaleLinear().range([0, vis.width]);
         vis.cy = d3.scaleLinear().range([vis.contextHeight, 0]);
 
-        vis.ctxAxis = vis.ctx.append("g").attr("class","ctx-axis")
+        
+        // Small user hint for brushing interaction
+        vis.ctxHint = vis.ctx.append("text")
+            .attr("class","brush-hint")
+            .attr("x", 8).attr("y", -6)
+            .attr("fill","#c7d2e4").attr("font-size", 12)
+            .text("Drag to select years");
+vis.ctxAxis = vis.ctx.append("g").attr("class","ctx-axis")
             .attr("transform", `translate(0,${vis.contextHeight})`);
 
         vis.ctxArea = d3.area()
@@ -306,7 +313,30 @@ class Chart {
             ? vis.yAxisR.style("opacity",1).attr("transform",`translate(${vis.width},0)`).call(d3.axisRight(vis.yRight).ticks(6))
             : vis.yAxisR.style("opacity",0);
 
-        // ========== Context view ==========
+        
+        // ========== Baseline reference at 0 °C ==========
+        const baseData = hasTemp ? [0] : [];
+        const baseLine = vis.plot.selectAll("line.baseline-zero").data(baseData);
+        baseLine.join(
+            enter => enter.append("line").attr("class","baseline-zero")
+                .attr("x1",0).attr("x2",vis.width)
+                .attr("y1", vis.yLeft(0)).attr("y2", vis.yLeft(0))
+                .attr("stroke","#94a3b8").attr("stroke-dasharray","4,4").attr("opacity",0.8),
+            update => update
+                .attr("x2",vis.width)
+                .attr("y1", vis.yLeft(0)).attr("y2", vis.yLeft(0)),
+            exit => exit.remove()
+        );
+        const baseLbl = vis.plot.selectAll("text.baseline-label").data(baseData);
+        baseLbl.join(
+            enter => enter.append("text").attr("class","baseline-label")
+                .attr("x", 8).attr("y", vis.yLeft(0) - 6)
+                .attr("fill","#c7d2e4").attr("font-size", 12).attr("font-weight", 600)
+                .text("Baseline (1951–1980 avg)"),
+            update => update.attr("y", vis.yLeft(0) - 6),
+            exit => exit.remove()
+        );
+// ========== Context view ==========
         vis.ctxPath.datum(vis.fullData.filter(d=>d.CO2ppm!=null))
             .attr("d", vis.ctxArea);
         vis.ctxAxis.call(d3.axisBottom(vis.cx).ticks(8).tickFormat(d3.format("d")));

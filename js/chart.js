@@ -82,6 +82,22 @@ class Chart {
         vis.xAxisG = vis.g.append("g").attr("class","x-axis");
         vis.yAxisL = vis.g.append("g").attr("class","y-axis-left");
         vis.yAxisR = vis.g.append("g").attr("class","y-axis-right").attr("transform",`translate(${vis.width},0)`);
+        // Axis titles
+        vis.yLabelL = vis.g.append("text")
+            .attr("class","y-label-left")
+            .attr("text-anchor","middle")
+            .attr("fill","#c7d2e4")
+            .attr("font-weight",600)
+            .attr("transform",`translate(${-70},${vis.height/2}) rotate(-90)`)
+            .text("Temp anomaly (°C, 1951–1980 baseline)");
+        vis.yLabelR = vis.g.append("text")
+            .attr("class","y-label-right")
+            .attr("text-anchor","middle")
+            .attr("fill","#c7d2e4")
+            .attr("font-weight",600)
+            .attr("transform",`translate(${vis.width+70},${vis.height/2}) rotate(90)`)
+            .text("CO₂ concentration (ppm — separate scale)");
+        
 
         // CO₂ line (generator)
         vis.line = d3.line()
@@ -357,7 +373,7 @@ class Chart {
         if (this._timer){ clearInterval(this._timer); this._timer=null; return; }
         if (this._stepIndex==null) this._stepIndex = 0;
         this.goToStep(this._stepIndex);
-        this._timer = setInterval(()=>{ this.goToStep(++this._stepIndex); }, 3200);
+        this._timer = setInterval(()=>{ this.goToStep(++this._stepIndex); }, 5200);
     }
 
     resize(){
@@ -371,6 +387,10 @@ class Chart {
         this.cx.range([0, this.width]);
         this.cy.range([this.contextHeight, 0]);
         this.yAxisR.attr("transform",`translate(${this.width},0)`);
+        // reposition axis titles
+        this.yLabelL.attr("transform",`translate(${-70},${this.height/2}) rotate(-90)`);
+        this.yLabelR.attr("transform",`translate(${this.width+70},${this.height/2}) rotate(90)`);
+        
         this.svg.select("#plot-clip rect").attr("width", this.width).attr("height", this.height);
         this.brush.extent([[0,0],[this.width, this.contextHeight]]);
         this.brushG.call(this.brush);

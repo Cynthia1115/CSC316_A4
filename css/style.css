@@ -75,3 +75,9 @@ main{padding:16px 8px 32px}
     color:#95a6c2; font-size:12px; display:flex; gap:14px; padding:8px 18px 18px;
     border-top:1px solid #1b263b; opacity:.9
 }
+
+
+/* Baseline & brush hint styling */
+.baseline-zero { pointer-events: none; }
+.baseline-label { pointer-events: none; }
+.brush-hint { pointer-events: none; opacity: 0.85; }
